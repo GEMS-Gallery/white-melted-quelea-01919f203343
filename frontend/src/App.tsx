@@ -83,9 +83,16 @@ const App: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          <Typography variant="h2" component="h1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-            Sammy's Special Blog
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)', padding: '20px', borderRadius: '10px' }}>
+            <img
+              src="https://internetcomputer.org/img/IC_logo_horizontal.svg"
+              alt="ICP Logo"
+              style={{ height: '50px', marginRight: '20px' }}
+            />
+            <Typography variant="h2" component="h1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+              Sammy's Special Blog
+            </Typography>
+          </Box>
         </Box>
         <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
           {isLoading ? (
