@@ -83,7 +83,7 @@ const App: React.FC = () => {
         }}
       >
         <Typography variant="h2" component="h1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-          Crypto Blog
+          Sammy's Special Blog
         </Typography>
       </Box>
       <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
