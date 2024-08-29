@@ -71,125 +71,127 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1642239817310-e87f49fbb561?ixid=M3w2MzIxNTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjQ5NTE3NjR8&ixlib=rb-4.0.3)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: '300px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography variant="h2" component="h1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-          Sammy's Special Blog
-        </Typography>
-      </Box>
-      <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-        {isLoading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          <>
-            {posts.map((post) => (
-              <Card key={post.id} sx={{ mb: 2 }}>
-                <CardContent>
-                  <Typography variant="h5" component="h2">
-                    {post.title}
-                  </Typography>
-                  <Typography color="text.secondary" gutterBottom>
-                    By {post.author} on {new Date(Number(post.timestamp) / 1000000).toLocaleString()}
-                  </Typography>
-                  <Typography variant="body1">{post.body}</Typography>
-                </CardContent>
-              </Card>
-            ))}
-          </>
-        )}
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setIsModalOpen(true)}
-          sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      <Box sx={{ backgroundColor: '#8e44ad', minHeight: '100vh' }}>
+        <Box
+          sx={{
+            backgroundImage: `url(https://images.unsplash.com/photo-1642239817310-e87f49fbb561?ixid=M3w2MzIxNTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjQ5NTE3NjR8&ixlib=rb-4.0.3)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '300px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
-          Create Post
-        </Button>
-        <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 400,
-              bgcolor: 'background.paper',
-              boxShadow: 24,
-              p: 4,
-            }}
+          <Typography variant="h2" component="h1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            Sammy's Special Blog
+          </Typography>
+        </Box>
+        <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
+          {isLoading ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              {posts.map((post) => (
+                <Card key={post.id} sx={{ mb: 2 }}>
+                  <CardContent>
+                    <Typography variant="h5" component="h2">
+                      {post.title}
+                    </Typography>
+                    <Typography color="text.secondary" gutterBottom>
+                      By {post.author} on {new Date(Number(post.timestamp) / 1000000).toLocaleString()}
+                    </Typography>
+                    <Typography variant="body1">{post.body}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setIsModalOpen(true)}
+            sx={{ position: 'fixed', bottom: 16, right: 16 }}
           >
-            <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
-              Create New Post
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Controller
-                name="title"
-                control={control}
-                defaultValue=""
-                rules={{ required: 'Title is required' }}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    label="Title"
-                    fullWidth
-                    margin="normal"
-                    error={!!error}
-                    helperText={error?.message}
-                  />
-                )}
-              />
-              <Controller
-                name="body"
-                control={control}
-                defaultValue=""
-                rules={{ required: 'Body is required' }}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    label="Body"
-                    fullWidth
-                    multiline
-                    rows={4}
-                    margin="normal"
-                    error={!!error}
-                    helperText={error?.message}
-                  />
-                )}
-              />
-              <Controller
-                name="author"
-                control={control}
-                defaultValue=""
-                rules={{ required: 'Author is required' }}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    label="Author"
-                    fullWidth
-                    margin="normal"
-                    error={!!error}
-                    helperText={error?.message}
-                  />
-                )}
-              />
-              <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-                Submit
-              </Button>
-            </form>
-          </Box>
-        </Modal>
-      </Container>
+            Create Post
+          </Button>
+          <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 400,
+                bgcolor: 'background.paper',
+                boxShadow: 24,
+                p: 4,
+              }}
+            >
+              <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
+                Create New Post
+              </Typography>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Controller
+                  name="title"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: 'Title is required' }}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      {...field}
+                      label="Title"
+                      fullWidth
+                      margin="normal"
+                      error={!!error}
+                      helperText={error?.message}
+                    />
+                  )}
+                />
+                <Controller
+                  name="body"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: 'Body is required' }}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      {...field}
+                      label="Body"
+                      fullWidth
+                      multiline
+                      rows={4}
+                      margin="normal"
+                      error={!!error}
+                      helperText={error?.message}
+                    />
+                  )}
+                />
+                <Controller
+                  name="author"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: 'Author is required' }}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      {...field}
+                      label="Author"
+                      fullWidth
+                      margin="normal"
+                      error={!!error}
+                      helperText={error?.message}
+                    />
+                  )}
+                />
+                <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+                  Submit
+                </Button>
+              </form>
+            </Box>
+          </Modal>
+        </Container>
+      </Box>
     </ThemeProvider>
   );
 };
